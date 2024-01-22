@@ -17,13 +17,13 @@ export default function Home(){
                 </div>
             </div>
             <hr />
-            <Container>
-                <Row>
-                    <Col md={12} className="mr-5 mb-3">
+            <Container className="p-0">
+                <div>
+                    <div className="mb-3">
                         <MakeAPost user={user}/>
-                    </Col>
-                </Row>
-                <Row >
+                    </div>
+                </div>
+                <div>
                     <HomeCard />
                     <HomeCard />
                     <HomeCard />
@@ -32,7 +32,7 @@ export default function Home(){
                     <HomeCard />
                     <HomeCard />
                     <HomeCard />
-                </Row>
+                </div>
             </Container>
         </div>
         </>

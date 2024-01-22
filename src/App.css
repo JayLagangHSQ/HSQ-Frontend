@@ -129,13 +129,36 @@ h1{
   margin-bottom: 10px;
 }
 
-.main-content {
+.mainContainer {
+  width: 100%;
   min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  max-width: 1300px;
+  margin-top: 2rem;
+  gap: 25px;
   /* border: solid; */
-  border-width: 1px;
+  /* border-width: 1px;
   border-radius: 8px;
   border-color: var(--brand-color-2);
-  background-color: var(--white);
+  background-color: var(--white); */
+}
+
+.sidebar {
+  max-width: 300px;
+  flex-shrink: 0;
+}
+
+.mainContent {
+  flex-grow: 1;
+  padding: 40px 60px;
+  border: 1px solid #000000;
+  border-radius: 8px;
+  height: max-content;
+}
+
+.linksbar {
+  flex-shrink: 1;
 }
 
 /* Add other styles as needed */

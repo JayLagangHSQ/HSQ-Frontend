@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import { useTable, usePagination } from "react-table";
+import { useTable, usePagination, useSortBy } from "react-table";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import Table from "react-bootstrap/Table";
 import styles from './calendar.module.css';
@@ -16,12 +16,12 @@ const TableView = ({ data }) => {
       {
         Header: "Time In",
         accessor: "clockIn",
-        Cell: ({ value }) => new Date(value).toLocaleTimeString(),
+        Cell: ({ value }) => new Date(value).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
       },
       {
         Header: "Time Out",
         accessor: "clockOut",
-        Cell: ({ value }) => new Date(value).toLocaleTimeString(),
+        Cell: ({ value }) => new Date(value).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
       },
     ],
     []
@@ -57,15 +57,16 @@ const TableView = ({ data }) => {
     {
       columns,
       data: filteredData,
-      initialState: { pageIndex: 0 },
+      initialState: { pageIndex: 0, pageSize: 31, sortBy: [{ id: "date", desc: false }] },
     },
-    usePagination
+    useSortBy,
+    usePagination,
   );
 
   const currentMonth = uniqueMonths[currentMonthIndex];
 
   return (
-    <div>
+    <div className={styles.tableContainer}>
       <div className={styles.monthPagination}>
         <button
           onClick={() =>
@@ -78,8 +79,9 @@ const TableView = ({ data }) => {
         >
           <IoIosArrowBack />
         </button>
+
+        <h4 className={`${styles.headerPagination}`}>{currentMonth}</h4>
         
-        <h4 className={`${styles.headerPagination} text-muted`}>{currentMonth}</h4>
         <button
           onClick={() =>
             setCurrentMonthIndex((prevIndex) =>
@@ -93,7 +95,7 @@ const TableView = ({ data }) => {
         </button>
       </div>
 
-      <Table bordered hover {...getTableProps()} style={{ width: "100%" }}>
+      <Table {...getTableProps()} className={styles.tableView}>
         <thead>
           {headerGroups.map((headerGroup, key) => (
             <tr {...headerGroup.getHeaderGroupProps()} key={key}>
@@ -111,7 +113,7 @@ const TableView = ({ data }) => {
             return (
               <tr {...row.getRowProps()} key={key}>
                 {row.cells.map((cell, key) => (
-                  <td {...cell.getCellProps()} key={key}>
+                  <td {...cell.getCellProps()} key={key} >
                     {cell.render("Cell")}
                   </td>
                 ))}
