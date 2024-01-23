@@ -398,3 +398,12 @@ h1{
 .borderRadius-5{
   border-radius: 8px;
 }
+
+.react-calendar__tile {
+  margin: 3px !important;
+  flex: 0 0 12.550% !important;
+}
+
+.react-calendar__navigation {
+  gap: 3px;
+}
