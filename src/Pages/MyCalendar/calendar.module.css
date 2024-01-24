@@ -107,7 +107,7 @@
 }
 
 .calendar button:hover {
-  color: black;
+  color: var(--black);
 }
 
 .good:hover, .late:hover, .bad:hover {
