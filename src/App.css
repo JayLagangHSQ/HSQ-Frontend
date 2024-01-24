@@ -136,6 +136,7 @@ h1{
   border-radius: 8px;
   border-color: var(--brand-color-2);
   background-color: var(--white);
+  margin-top: 2.56rem;
 }
 
 /* Add other styles as needed */
@@ -406,4 +407,13 @@ h1{
 
 .react-calendar__navigation {
   gap: 3px;
+}
+
+.react-calendar__tile--now {
+  background: #006edc !important;
+}
+
+.react-calendar__tile--active, .react-calendar__tile--active:hover,
+.react-calendar__tile--now:hover {
+  color: var(--brand-color-1) !important;
 }
