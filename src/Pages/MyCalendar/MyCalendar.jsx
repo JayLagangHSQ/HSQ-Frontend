@@ -74,14 +74,14 @@ const MyCalendar = () => {
   }
   return (
     // mockdata is the one that I used at the moment
-    <div className={styles.mainContainer}>
-      <div className="d-flex justify-content-end">
+    <div className={styles.attendanceContainer}>
+      <div className="align-self-end d-flex justify-content-end">
         <div onClick={handleClockIn} className="border p-1 borderRadius-8 mr-3" style={{cursor:'pointer'}}>
           <span>Clock-in <img src="/icons/pop-clock-out.svg" alt="" /></span>
         </div>
       </div>
-      <div style={{ padding: "1rem" }}>
-        <div className={`${styles.viewType} `}>
+      <div>
+        <div className={styles.viewType}>
           <select
             id="viewType"
             value={viewType}

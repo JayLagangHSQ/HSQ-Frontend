@@ -1,6 +1,5 @@
 import React, { useMemo, useState } from "react";
 import { useTable, usePagination, useSortBy } from "react-table";
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import Table from "react-bootstrap/Table";
 import styles from "./calendar.module.css";
 
