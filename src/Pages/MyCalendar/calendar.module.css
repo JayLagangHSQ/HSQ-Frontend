@@ -1,8 +1,29 @@
+.attendanceContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid var(--brand-color-2);
+  border-radius: 8px;
+  padding: 2.56rem 3.88rem;
+}
+
 .tableContainer, .calendarContainer {
   border-radius: 8px;
   background: #575757;
-  margin-top: 25px;
-  padding: 20px 22px 15px;
+  padding: 1.63rem 1.38rem 0.81rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calendarContainer {
+  width: 27.6875rem;
+}
+
+.tableContainer {
+  width: 36.125rem; 
+  /* width: 100%; */
+  flex-direction: column;
 }
 
 .tableView {
@@ -13,36 +34,65 @@
   color: #F3F3F3 !important;
   text-transform: capitalize;
   user-select: none;
+  margin: 0.87rem 0;
 }
 
 .tableView tr, td, th {
   border: 3px solid #F3F3F3 !important;
+  font-size: 0.64rem;
+  font-style: normal;
+  line-height: normal;
+}
+
+.tableView th {
+  font-weight: 700;
 }
 
 .viewType {
   display: flex;
   justify-content: center;
+  font-size: 0.8rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal; 
+  padding-bottom: 1.56rem;
 }
 
-.monthPagination, .calendarContainer {
+.viewSelect {
+  background-color: transparent;
+  text-align: center;
+  border-radius: 0.3125rem;
+  border: 1px solid var(--mute, #575757);
+  width: 13.25rem;
+  height: 2.0625rem; 
+}
+
+.monthPagination {
   display: flex;
-  justify-content: center;
   align-items: center;
-  margin-bottom: 14px;
+  width: 16.53569rem;
+  height: 1.4375rem; 
+  justify-content: space-between;
 }
 
 .headerPagination {
-  min-width: 18rem;
   text-align: center;
   margin: 0;
   color: #F3F3F3;
+  font-size: 1.25rem !important;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal; 
 }
 
 .paginationButton {
   background-color: transparent;
   border: none;
-  font-size: 2rem;
   color: #F3F3F3;
+}
+
+.paginationButton svg {
+  width: 0.625rem; 
 }
 
 .calendar {
@@ -51,49 +101,27 @@
   border: none !important;
 }
 
-.weekday {
-  margin: 2px;
-}
-
 .calendar button {
   color: #F3F3F3;
   border-radius: 3px;
 }
 
-.calendar button:hover, button:focus {
-  color: #000000;
-  background-color: #E6E6E6 !important;
+.calendar button:hover {
+  color: black;
+}
+
+.good:hover, .late:hover, .bad:hover {
+  color: var(--brand-color-1) !important;
 }
 
 .good {
   background-color: #24EF06 !important;
-  /* color: #000000;   */
 }
 
 .late {
   background-color: #FF9D2B !important;
-  /* color: #000000;   */
 }
 
 .absent {
   background-color: #F22F41 !important;
-  /* color: #000000;   */
-}
-
-.viewSelect {
-  background-color: transparent;
-  border: 1px solid #000000;
-  border-radius: 5px;
-  width: 212px;
-  text-align: center;
-  padding: 9px 0;
-}
-
-.mainContainer{
-  border-radius: 8px;
-  border-style: solid;
-  border-color: #516473;
-  border-width: 1px;
-  padding: 2rem;
-  margin-top: 1rem;
 }

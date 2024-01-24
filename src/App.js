@@ -127,7 +127,7 @@ function App() {
                         <div className='col-3 mt-3 ml-5'>
                             <AppSidebar />
                         </div>
-                        <div className='col-6 mt-4 mb-4 mr-auto pl-0 main-content'>
+                        <div className='col-6 mb-4 mr-auto pl-0 main-content'>
                             {/* <div className='' style={{}}> */}
                                 <Routes>
                                     <Route path="/" element={<Home/>} />
