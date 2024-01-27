@@ -18,7 +18,7 @@ export default function EditForm({props}){
 
     const editForm = (e) =>{
         e.preventDefault();
-        fetch(`${process.env.REACT_APP_API_URL}/api/forms/form/edit`,{
+        fetch(`${import.meta.env.VITE_APP_API_URL}/api/forms/form/edit`,{
             method: "PUT",
             headers: {
                 'Content-Type': 'application/json',

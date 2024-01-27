@@ -10,10 +10,10 @@ import NavNotificationIcon from './components/NavNotificationIcon';
 import io from "socket.io-client";
 import NavNotificationPop from './components/NavNotificationPop';
 
-
-const socket = io.connect(`${process.env.REACT_APP_SOCKET_URL}`);
+const socket = io.connect(`${import.meta.env.VITE_APP_SOCKET_URL}`);
 
 const AppNavbar = ({setIsInCompose,setIsInArticleView, setIsInEditArticleView}) => {
+
     let {updatePosted, acknowledgeClick} = useContext(NotificationContext)
     const { user } = useContext(UserContext);
     let location = useLocation();

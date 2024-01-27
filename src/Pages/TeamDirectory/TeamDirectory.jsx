@@ -8,7 +8,7 @@ export default function TeamDirectory (){
     const [result, setResult] = useState(null);
 
     const refreshEffect = () => {
-        fetch(`${process.env.REACT_APP_API_URL}/api/users/search`,{
+        fetch(`${import.meta.env.VITE_APP_API_URL}/api/users/search`,{
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',

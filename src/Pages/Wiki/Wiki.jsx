@@ -20,7 +20,7 @@ export default function Wiki() {
     const fetchArticles = () => {
         setLoading(true);
         try{
-            fetch(`${process.env.REACT_APP_API_URL}/api/articles/`, {
+            fetch(`${import.meta.env.VITE_APP_API_URL}/api/articles/`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }

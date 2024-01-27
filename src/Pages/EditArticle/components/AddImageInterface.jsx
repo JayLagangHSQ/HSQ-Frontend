@@ -30,7 +30,7 @@ export default function AddImageInterface({ fetchImageData, setImages }) {
             for (let i = 0; i < newImages.length; i++) {
                 formData.append('images', newImages[i]);
               }
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/articles/article/edit/addImage/${articleId}`, {
+            const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/api/articles/article/edit/addImage/${articleId}`, {
                 method: 'PUT',
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`

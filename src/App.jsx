@@ -25,6 +25,7 @@ import NewsAndUpdates from './Pages/NewsAndUpdates/NewsAndUpdates';
 import MyCalendar from './Pages/MyCalendar/MyCalendar';
 
 function App() {
+
     const [acknowledgeClick, setAcknowledgeClicked] = useState(false)
     const [updatePosted, setUpdatePosted] = useState(false)
     const [isInCompose, setIsInCompose] = useState(false)
@@ -40,14 +41,14 @@ function App() {
         isManager: null,
         department:null
     });
-
+    
     const unsetUser = () => {
         localStorage.clear();
     }
 
     useEffect(() => {
   
-        fetch(`${process.env.REACT_APP_API_URL}/api/users/user/detail`,{
+        fetch(`${import.meta.env.VITE_APP_API_URL}/api/users/user/detail`,{
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             }
@@ -86,11 +87,11 @@ function App() {
                 setIsDoneInitialing(true);
             }   
         })
-        
-    }, [user.id])
 
+    }, [user.id])
+    
     return (
-        
+        <>
         <UserProvider value={{user, setUser, unsetUser}}>
         <NotificationProvider value={{updatePosted, setUpdatePosted, acknowledgeClick, setAcknowledgeClicked}}>
             <Router>
@@ -167,6 +168,7 @@ function App() {
             </Router>
         </NotificationProvider>
         </UserProvider>
+        </>
     );
 }
 

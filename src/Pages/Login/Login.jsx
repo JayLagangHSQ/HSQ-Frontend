@@ -28,7 +28,7 @@ export default function Login(){
 
         e.preventDefault();
 
-		fetch(`${process.env.REACT_APP_API_URL}/api/users/login`,{
+		fetch(`${import.meta.env.VITE_APP_API_URL}/api/users/login`,{
 			method: 'POST',
 			headers: {
 				"Content-Type": "application/json"
@@ -70,7 +70,7 @@ export default function Login(){
 
 	const retrieveUserDetails = (token) => {
 
-		fetch(`${process.env.REACT_APP_API_URL}/api/users/user/detail`,{
+		fetch(`${import.meta.env.VITE_APP_API_URL}/api/users/user/detail`,{
             headers: {
                 Authorization: `Bearer ${token}`
             }

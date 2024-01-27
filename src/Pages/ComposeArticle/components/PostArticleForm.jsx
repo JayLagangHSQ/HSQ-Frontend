@@ -76,7 +76,7 @@ export default function PostArticleForm({content,user, isPlaceholderVisible, isM
             for (let i = 0; i < images.length; i++) {
                 formData.append('images', images[i]);
               }
-            await fetch(`${process.env.REACT_APP_API_URL}/api/articles/newArticle`, {
+            await fetch(`${import.meta.env.VITE_APP_API_URL}/api/articles/newArticle`, {
                 method: 'POST',
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`

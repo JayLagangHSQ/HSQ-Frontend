@@ -1,70 +1,62 @@
 import { useState } from "react";
 import { Form, Button, Dropdown} from "react-bootstrap"
 
-export default function TeamDirectorySearchArea ({refreshEffect, setLoading, setResult}){
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [category, setCategory] =useState('');
+export default function SearchArea({setForms,setLoading,refreshEffect,setHeader,setCurrentPage}){
+    const [name, setName] = useState('');
+    const [category, setCategory] = useState('');
 
     const submitSearchRequest = () =>{
-        setLoading(true);
-        fetch(`${process.env.REACT_APP_API_URL}/api/users/search`,{
+        
+        setLoading(true); 
+        setCurrentPage(1)
+        fetch(`${import.meta.env.VITE_APP_API_URL}/api/forms/form`,{
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             },
             body: JSON.stringify({
-                firstName: firstName.replace(/\\/g, "\\\\"),
-                lastName: lastName.replace(/\\/g, "\\\\"),
-                department: category.toLowerCase()
+                name: name.replace(/\\/g, "\\\\"),
+                department:category
             })
         })
         .then(res => res.json())
         .then(data => {
-            const sortedData = data.sort((a, b) => (a.department > b.department) ? 1 : -1);
-            setResult(sortedData);
+            
+            setForms(data)
             setLoading(false);
+            setHeader('Custom Search')
         })
+
     }
     const reset = () =>{
-        setFirstName(''); 
-        setLastName('')
-        setCategory('');
+        setCategory('')
+        setCurrentPage(1)
+        setName(''); 
         refreshEffect();
+        setHeader('All Forms & Docs')
     }
 
     const handleCategorySelect = (selectedCategory) => {
         setCategory(selectedCategory);
       };
     return(
-        <>
-            <div className="d-flex">
+        <div className="d-flex">
             <Form.Control
-            style={{borderRadius:'8px'}}
-            type="text"
-            placeholder="First name..."
-            onChange={(e) => setFirstName(e.target.value)}
-            className='custom-search-input'
-            value={firstName} 
-            />
-            
-            <Form.Control
-            style={{borderRadius:'8px'}}
-            type="text"
-            placeholder="Last name..."
-            onChange={(e) => setLastName(e.target.value)}
-            className='custom-search-input'
-            value={lastName} 
-            />
-            
-            <div className="d-flex align-items-center">
+                style={{borderRadius:'8px'}}
+                type="text"
+                placeholder="Search..."
+                onChange={(e) => setName(e.target.value)}
+                className='custom-search-input'
+                value={name} 
+                />
+            <div className="d-flex align-items-center">.
                 <Dropdown onSelect={handleCategorySelect} className="ml-1" >
-                <Dropdown.Toggle variant="secondary" id="categoryDropdown" size='sm' style={{minWidth:'130px'}}>
-                {category ? category : 'Company-wide'}
+                <Dropdown.Toggle variant="secondary" id="categoryDropdown" size='sm'>
+                {category ? category : 'Deparment'}
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                <Dropdown.Item eventKey="">Company-wide</Dropdown.Item>
+                <Dropdown.Item eventKey="Company-wide">Company-wide</Dropdown.Item>
                 <Dropdown.Item eventKey="Executive">Executive</Dropdown.Item>
                 <Dropdown.Item eventKey="Legal&Finance">Legal & Finance</Dropdown.Item>
                 <Dropdown.Item eventKey="IT">IT</Dropdown.Item>
@@ -81,6 +73,5 @@ export default function TeamDirectorySearchArea ({refreshEffect, setLoading, set
             </div>
             
         </div>
-        </>
     )
 }

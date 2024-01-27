@@ -10,7 +10,7 @@ export default function ArticleViewer() {
   const { articleId } = useParams();
   const { user } = useContext(UserContext);
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}/api/articles/article/${articleId}`, {
+    fetch(`${import.meta.env.VITE_APP_API_URL}/api/articles/article/${articleId}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`
       }

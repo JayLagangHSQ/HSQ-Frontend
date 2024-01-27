@@ -15,7 +15,7 @@ export default function ForgotPasswordModal ({showForgotModal, openResetPassword
     const handleSubmitEmail = (e) =>{
         e.preventDefault();
 
-		fetch(`${process.env.REACT_APP_API_URL}/api/mails/passwordReset/GenerateToken`,{
+		fetch(`${import.meta.env.VITE_APP_API_URL}/api/mails/passwordReset/GenerateToken`,{
 			method: 'POST',
 			headers: {
 				"Content-Type": "application/json"

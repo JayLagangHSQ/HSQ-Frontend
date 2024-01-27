@@ -12,7 +12,7 @@ export default function ConfirmToken ({showConfirmTokenModal, setShowConfirmToke
 
         e.preventDefault();
 
-		fetch(`${process.env.REACT_APP_API_URL}/api/mails/passwordReset/verifyToken`,{
+		fetch(`${import.meta.env.VITE_APP_API_URL}/api/mails/passwordReset/verifyToken`,{
 			method: 'POST',
 			headers: {
 				"Content-Type": "application/json"
