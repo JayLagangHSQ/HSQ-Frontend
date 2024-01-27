@@ -14,7 +14,7 @@ export default function UpdatePersonalEmailModal({openUpdateEmailModal, showEmai
     const handleEmailUpdate = async(e) =>{
 
         e.preventDefault();
-        fetch(`${process.env.REACT_APP_API_URL}/api/users/user/update/personalEmail`, {
+        fetch(`${import.meta.env.VITE_APP_API_URL}/api/users/user/update/personalEmail`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",

@@ -37,7 +37,7 @@ export default function EditArticle() {
     editorRef.current.style.fontSize = `${32}px`;
     
     
-    fetch(`${process.env.REACT_APP_API_URL}/api/articles/article/${articleId}`, {
+    fetch(`${import.meta.env.VITE_APP_API_URL}/api/articles/article/${articleId}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }
@@ -51,7 +51,7 @@ export default function EditArticle() {
 
   },[])
   const refresh = () =>{
-      fetch(`${process.env.REACT_APP_API_URL}/api/articles/article/${articleId}`, {
+      fetch(`${import.meta.env.VITE_APP_API_URL}/api/articles/article/${articleId}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }

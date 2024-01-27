@@ -34,7 +34,7 @@ export default function EnterNewPassword ({ showEnterNewPassword,setShowEnterNew
     const handleSubmitReset = (e) =>{
         e.preventDefault();
 
-		fetch(`${process.env.REACT_APP_API_URL}/api/mails/passwordReset/reset`,{
+		fetch(`${import.meta.env.VITE_APP_API_URL}/api/mails/passwordReset/reset`,{
 			method: 'PUT',
 			headers: {
                 Authorization: `Bearer ${localStorage.getItem('resetToken')}`,

@@ -8,7 +8,7 @@ export default function WikiSearchArea({setArticles,setLoading,refreshEffect,set
     const submitSearchRequest = () =>{
         setLoading(true); 
 
-        fetch(`${process.env.REACT_APP_API_URL}/api/articles/article`,{
+        fetch(`${import.meta.env.VITE_APP_API_URL}/api/articles/article`,{
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',

@@ -35,7 +35,7 @@ export default function Profile(){
     },[selectedImage])
 
     const fetchUserData = () =>{
-        fetch(`${process.env.REACT_APP_API_URL}/api/users/user/detail`,{
+        fetch(`${import.meta.env.VITE_APP_API_URL}/api/users/user/detail`,{
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             }
@@ -116,7 +116,7 @@ export default function Profile(){
             if(typeof profilePictureKey === 'object'){
                 formData.append("key", profilePictureKey.key);
             }
-          fetch(`${process.env.REACT_APP_API_URL}/api/users/user/profilePicture/update`, {
+          fetch(`${import.meta.env.VITE_APP_API_URL}/api/users/user/profilePicture/update`, {
             method: "PUT",
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,

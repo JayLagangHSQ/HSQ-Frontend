@@ -31,7 +31,7 @@ export default function UpdatePassword(){
 
     const handleUpdatePassword = (e) => {
         e.preventDefault();
-        fetch(`${process.env.REACT_APP_API_URL}/api/users/user/passwordUpdate`,{
+        fetch(`${import.meta.env.VITE_APP_API_URL}/api/users/user/passwordUpdate`,{
 			method: 'PUT',
 			headers: {
 				"Content-Type": "application/json",

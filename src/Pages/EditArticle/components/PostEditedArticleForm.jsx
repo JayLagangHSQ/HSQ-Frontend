@@ -63,7 +63,7 @@ export default function PostEditedArticleForm({originalArticle,content,user, isP
             formData.append('content', content);
             formData.append('latestUpdate', new Date().toISOString());
             formData.append('updatedBy', user.id);
-            await fetch(`${process.env.REACT_APP_API_URL}/api/articles/article/edit/${articleId}`, {
+            await fetch(`${import.meta.env.VITE_APP_API_URL}/api/articles/article/edit/${articleId}`, {
                 method: 'PUT',
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`

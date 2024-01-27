@@ -20,7 +20,7 @@ export default function FormsRepository() {
 
     const fetchForms = () => {
         setLoading(true);
-        fetch(`${process.env.REACT_APP_API_URL}/api/forms/`, {
+        fetch(`${import.meta.env.VITE_APP_API_URL}/api/forms/`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             }

@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { Modal, Button, Dropdown, Form } from "react-bootstrap";
 import Swal from "sweetalert2";
 
-export default function PostNewsAndUpdateModal({setUpdatePosted, setSelectedImage, selectedImage, user, showModal,openModal,closeModal,fetchData, setLoading, loading}){
-    
-    const [title, setTitle] = useState('')
-    const [department, setDepartment] = useState('Company-wide')
-    const [message, setMessage] = useState('')
+export default function EditNewsAndUpdateModal({ data,user, openEdit,setOpenEdit,fetchData, setLoading, loading, openModal}){
+
+    const [title, setTitle] = useState(data.title)
+    const [department, setDepartment] = useState(data.department)
+    const [message, setMessage] = useState(data.message)
     const [missingInfo, setMissingInfo] = useState(true)
     const linkStyle = {
         fontSize: "16px",
@@ -17,6 +17,8 @@ export default function PostNewsAndUpdateModal({setUpdatePosted, setSelectedImag
     
     useEffect(()=>{
         if(title.length === 0 || message.length === 0){
+            setMissingInfo(true)
+        } else if(title === data.title && message === data.message && department===data.department){
             setMissingInfo(true)
         } else {
             setMissingInfo(false)
@@ -31,22 +33,13 @@ export default function PostNewsAndUpdateModal({setUpdatePosted, setSelectedImag
         const input = e.target.value;
         setTitle(input);
     };
-    const handleImageChange = (event) => {
-        const fileList = Array.from(event.target.files);
-        setSelectedImage(fileList);
-    };
 
-    const renderImagePreviews = () => {
-        return selectedImage.map((image, index) => (
-          <img
-            key={index}
-            src={URL.createObjectURL(image)}
-            alt={`Preview-${index}`}
-            className="img-thumbnail mr-2 mb-2"
-            style={{ width: '100px', height: '100px', objectFit: 'cover' }}
-          />
-        ));
-      };
+    const closeModal = () => {
+        setOpenEdit(false)
+        setTitle(data.title)
+        setMessage(data.message)
+        setDepartment(data.department)
+      }
 
     const handleDepartmentSelect = (selectedDepartment) => {
         setDepartment(selectedDepartment);
@@ -54,7 +47,6 @@ export default function PostNewsAndUpdateModal({setUpdatePosted, setSelectedImag
 
     const handlePost = async(event) => {
         event.preventDefault();
-        setUpdatePosted(true)
         setLoading(true);
         if (title === '') {
             setLoading(false);
@@ -67,23 +59,20 @@ export default function PostNewsAndUpdateModal({setUpdatePosted, setSelectedImag
             });
 
         } else {
-            const formData = new FormData();
-            formData.append('department', department);
-            formData.append('title', title);
-            formData.append('message', message);
-            formData.append('author', user.id);
-            for (let i = 0; i < selectedImage.length; i++) {
-                formData.append('images', selectedImage[i]);
-            }
-            await fetch(`${process.env.REACT_APP_API_URL}/api/newsAndUpdates/upload`, {
-                method: 'POST',
+            await fetch(`${import.meta.env.VITE_APP_API_URL}/api/newsAndUpdates/edit`, {
+                method: 'PUT',
                 headers: {
+                    "Content-Type": "application/json",
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 },
-                body: formData,
+                body: JSON.stringify({
+                    department: department,
+                    title: title,
+                    message: message,
+                    newsAndUpdateId: data._id
+                })
             }).then((data) => {
                 if (data.status === 201) {
-                    setUpdatePosted(false)
                     setLoading(false);
                     fetchData();
                     closeModal();
@@ -101,7 +90,6 @@ export default function PostNewsAndUpdateModal({setUpdatePosted, setSelectedImag
                         text: 'Please try again',
                     });
                     setLoading(false);
-                    setUpdatePosted(false)
                 }
             });
         }
@@ -109,11 +97,16 @@ export default function PostNewsAndUpdateModal({setUpdatePosted, setSelectedImag
 
     return(
         <>
-            <i onClick={openModal} className="text-left" style={linkStyle}>Create A Post</i>
+        <div className="ml-auto d-flex" style={{cursor:'pointer'}} onClick={openModal}>
+                <div>
+                    <img src="/icons/edit-icon.svg" alt="edit-edit" style={{height:'16px', width:"16px", position:'relative', right:'16%', bottom:'7%'}}/>
+                </div>
+                <span className="small"><i>Edit post</i></span>
+                </div>
             {/* Modal */}
-            <Modal show={showModal} onHide={closeModal}>
+            <Modal show={openEdit} onHide={closeModal}>
                 <Modal.Header>
-                    <Modal.Title>Create post</Modal.Title>
+                    <Modal.Title>Edit post</Modal.Title>
                     <span style={{cursor:'pointer'}} className="font-weight-bold" onClick={closeModal}>X</span>
                 </Modal.Header>
 
@@ -133,25 +126,6 @@ export default function PostNewsAndUpdateModal({setUpdatePosted, setSelectedImag
                         style={{ borderRadius: '5px', minHeight: '20vh', width: '100%', resize: 'none'  }}
                     />
                     </div>
-                    {/* Image Attachments */}
-                    <div className="d-flex flex-column align-items-center justify-content-center p-2 mt-auto m-2" style={{minHeight:'80px', borderRadius:'8px', borderWidth:'1px', borderStyle:'solid', borderColor:'#516473' }}>
-                        
-                        <div className="d-flex overflow-auto">
-                            {selectedImage.length > 0?<>{renderImagePreviews()}</>   : null}
-                        </div>
-                    
-                        <Form.Group controlId="imageInput">
-                            <Form.Label className="smallest">Please choose the image that you want to attach(optional)</Form.Label>
-                            <Form.Control
-                                style={{borderStyle:'none'}}
-                                className="smallest newsAndUpdateImage"
-                                type="file"
-                                multiple
-                                accept="image/*"
-                                onChange={handleImageChange}
-                            />
-                        </Form.Group>
-                    </div>  
                 </div>  
                 </Modal.Body>
                 

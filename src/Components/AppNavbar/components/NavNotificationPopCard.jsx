@@ -34,7 +34,7 @@ export default function NavNotificationPopCard({unread}){
     const handleAcknowledge = ()=>{
       const newsId = unread._id;
 
-      fetch(`${process.env.REACT_APP_API_URL}/api/users/user/acknowledgeUpdate`,{
+      fetch(`${import.meta.env.VITE_APP_API_URL}/api/users/user/acknowledgeUpdate`,{
         method: 'PUT',
         headers: {
             "Content-Type": "application/json",

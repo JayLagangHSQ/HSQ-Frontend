@@ -48,7 +48,7 @@ export default function ArticleImageViewEdit({ refresh, originalArticle,setOrigi
     }, [fullscreenIndex, images.length]);
 
     const fetchImageData = () =>{
-        fetch(`${process.env.REACT_APP_API_URL}/api/articles/article/${articleId}`, {
+        fetch(`${import.meta.env.VITE_APP_API_URL}/api/articles/article/${articleId}`, {
             headers: {
               Authorization: `Bearer ${localStorage.getItem('token')}`
             }
@@ -77,7 +77,7 @@ export default function ArticleImageViewEdit({ refresh, originalArticle,setOrigi
         // If the user confirms, proceed with the fetch request
         if (isConfirmed.isConfirmed) {
             try {
-                const response = await fetch(`${process.env.REACT_APP_API_URL}/api/articles/article/edit/deleteImage/${articleId}`, {
+                const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/api/articles/article/edit/deleteImage/${articleId}`, {
                     method: 'DELETE',
                     headers: {
                         'Content-Type': 'application/json',

@@ -29,7 +29,7 @@ export default function NewsAndUpdates(){
 
     const fetchData = () => {
         setLoading(true);
-        fetch(`${process.env.REACT_APP_API_URL}/api/newsAndUpdates`, {
+        fetch(`${import.meta.env.VITE_APP_API_URL}/api/newsAndUpdates`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             }

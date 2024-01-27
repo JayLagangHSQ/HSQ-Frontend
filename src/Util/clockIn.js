@@ -2,7 +2,7 @@
 const clockIn = async() =>{
   let result;
   const response = await fetch(
-      `${process.env.REACT_APP_API_URL}/api/users/user/clockIn`,
+      `${import.meta.env.VITE_APP_API_URL}/api/users/user/clockIn`,
       {
         method: "POST",
         headers: {

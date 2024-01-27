@@ -15,7 +15,7 @@ export default function AddNewForm({ setForms, refreshEffect }) {
 
   const addNewForm = (e) => {
     e.preventDefault();
-    fetch(`${process.env.REACT_APP_API_URL}/api/forms/newForm`, {
+    fetch(`${import.meta.env.VITE_APP_API_URL}/api/forms/newForm`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

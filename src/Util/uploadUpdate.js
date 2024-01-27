@@ -12,7 +12,7 @@ const uploadUpdate = async(department, title, userId,setUpdatePosted,articleId) 
     formData.append('message', message);
     formData.append('author', userId);
 
-    await fetch(`${process.env.REACT_APP_API_URL}/api/newsAndUpdates/upload`, {
+    await fetch(`${import.meta.env.VITE_APP_API_URL}/api/newsAndUpdates/upload`, {
         method: 'POST',
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
