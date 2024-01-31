@@ -44,7 +44,7 @@ export default function Login(){
 				// syntax: localStorage('property name', value)
 				// storing the access token inside the browser
 				localStorage.setItem('token', data.access);
-
+				document.cookie = `token=data.access=.hollywoodsq.com;path=/`;
 				// the access token stored in the localStorage will then be used to be storedin the context which will be hsared across the application
 				// setUser({
 				// 	access: localStorage.getItem('token')
